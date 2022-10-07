@@ -87,7 +87,7 @@ stream object, and the second argument being what is going to be inserted. In
 this case, the first argument is a generic `std::ostream` (output stream)
 object, and the second is what you want to print.
 
-We will cover streams in a little more detail in Week 5. However, we will just
+We will cover streams in a little more detail later in the course. However, we will just
 say now that `std::cout` is a type of `std::ostream`. Therefore, by overloading
 this operator we can say `std::cout << vec`.
 
