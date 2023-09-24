@@ -1,6 +1,6 @@
 # Problem Set 3 Python Rubric
 
-This portion of the Problem Set will be graded out of 10 points and is worth 4% of your total grade.
+This portion of the Problem Set will be graded out of 10 points.
 
 <table width="100%">
     <tr>
@@ -16,7 +16,7 @@ This portion of the Problem Set will be graded out of 10 points and is worth 4% 
             Molecular Graph
                 <ul>
                     <li> Graph creation
-                    <li> Ring Analysis
+                    <li> Ring Analysis - NetworkX and Depth-first search
                     <li> Visualization
                 </ul>
         </td>
@@ -24,7 +24,7 @@ This portion of the Problem Set will be graded out of 10 points and is worth 4% 
             Points
                 <ul>
                     <li> 2 points
-                    <li> 2 points
+                    <li> 3 points
                     <li> 1 point
                 </ul>
         </td>
@@ -34,12 +34,12 @@ This portion of the Problem Set will be graded out of 10 points and is worth 4% 
         Makefile
     </td>
     <td>
-        3 points
+        2 points
     </td>
     </tr>
     <tr>
     <td>
-        Documentation and Reflection
+        Documentation and Questions
     </td>
     <td>
         2 points
@@ -50,8 +50,7 @@ This portion of the Problem Set will be graded out of 10 points and is worth 4% 
 
 # Problem Set 3 C++ Rubric
 
-This portion of the Problem Set will be graded out of 10 points and is worth 4% of your total grade.
-
+This portion of the Problem Set will be graded out of 10 points.
 
 <table width="100%">
     <tr>
@@ -90,4 +89,5 @@ This portion of the Problem Set will be graded out of 10 points and is worth 4% 
     </tr>
 
 </table>
+
 

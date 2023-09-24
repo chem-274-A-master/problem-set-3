@@ -32,7 +32,11 @@ A mathematical graph is made up of "nodes" or "vertices" (circles in the image b
 
 When molecules are represented as graphs, the atoms are represented as nodes in the graph, and the bonds are represented as edges.
 
-Your task for this homework is to use Python to represent molecular information read from an sdf file as a graph. You have been provided with a function called `parse_sdf` in `read.py` which will return a list of elements and bonds from an sdf file.
+In this homework, you will use a Python library called [NetworkX](https://networkx.org/) for graph representation.
+You will also implement your own ring finding algorithm.
+However, if you were working on a real molecular application, you would likely use a specialized library like [RDKit](https://www.rdkit.org/) instead (we will use this library in a later lab!).
+
+Your task for this homework is to use Python to represent molecular information read from a [Structured data File (sdf)](https://chem.libretexts.org/Courses/Intercollegiate_Courses/Cheminformatics/02%3A_Representing_Small_Molecules_on_Computers/2.05%3A_Structural_Data_Files) as a graph. You have been provided with a function called `parse_sdf` in `read.py` which will return a list of elements and bonds from an sdf file.
 
 You will use a Python library called [NetworkX](https://networkx.org/) to create a graph from molecular information read from an SDF file.
 You can then use graph functions to determine things about the molecular structure, such as the presence of rings.
@@ -40,30 +44,30 @@ You can then use graph functions to determine things about the molecular structu
 Your code should create a graph using the information from the sdf file. 
 You should then print out the number of rings in the molecule and the number of atoms in each ring. You should also use NetworkX to create a visualization of the network and save it to a file.
 
+You will also implement your own code for counting the number of rings in a molecular graph using a depth-first search traversal. 
+
 You might find it useful to work in a Jupyter notebook for this homework, but **your final code should be turned in as a .py file**.
 
-Here are some suggested steps:
-1. Install NetworkX in a new environment with Python 3.10. The networkx documentation suggests installing using pip, but I found installing from conda to work better for me.
-2. Read the [NetworkX documentation](https://networkx.org/documentation/latest/) to learn how to create a graph using NetworkX. Create a graph with no nodes.
-3. Use object introspection to read about the `add_node` method and the `add_edge` methods of the graph objects.
-4. Use NetworkX to create a graph for a provided molecule.
-5. Analyze the number of rings in the molecule and the ring size.
-6. Create a visualization of the network.
+Your code should include:
+
+1. A function to create a NetworkX graph from the output of `parse_sdf`. Each atom should be a node and each bond should be an edge.
+2. Calculation of the number of rings in a molecule using a NetworkX function.
+3. Implementation of a ring finding algorithm (depth-first search) to find the number of rings in a molecule using your NetworkX graph. Note that the depth-first search approach will only work for simple molecules. You can see pseudocode for [a depth-first ring finding algorithm on Wikipedia](https://en.wikipedia.org/wiki/Cycle_(graph_theory)#Algorithm). Use this as a guide to complete your task.
+4. A comparison of the numer of rings calculated with your NetworkX function and the number of rings calculated using your algorithm.
 
 ### Questions
 Answer these questions in your `README.md`. 
 
 1. What is an important feature of a NetworkX node? What data type did you choose to represent a node, and why? If you did not include information about the atom identity in your node, what type of Python data type could you have used to do that?
-2. Use an object introspection technique on the NetworkX graph object. What method(s) did you use, and what did you learn about the object?
+2. What is a depth-first search algorithm? Explain how the algorithm works (you may choose to use a combination of illustration and text). The depth-first search uses recursion - what is recursion and why is it used for this algorithm?
 3. Use PubChem to get an SDF file for a molecule of choice and use your code to analyze it. What molecule did you choose and why?
-4. **Bonus** - How could you color the nodes in the network based on the element of the atom? Implement this in your code.
 
 ### Files
 Include the following files in your repo:
 1. Your code which can create a NetworkX network from information in an SDF file.
-2. A `README.md` which explains the repo purpose and how to run the code in yourproject.
+2. A `README.md` which explains the repo purpose and how to run the code in your project.
 3. A `Makefile` with the following targets:
-   1. `environment` - creates the Python environment needed to run your code.
+   1. `environment` - creates the Python environment needed to run your code. Note that you will need to create an install libraries you need like NetworkX.
    2. `analyze` - analyze your molecule of choice.
    3. `clean` - remove images from `analyze`
    4. `lint` - run black and flake8
@@ -87,7 +91,7 @@ stream object, and the second argument being what is going to be inserted. In
 this case, the first argument is a generic `std::ostream` (output stream)
 object, and the second is what you want to print.
 
-We will cover streams in a little more detail later in the course. However, we will just
+We will cover streams in a little more detail in Week 5. However, we will just
 say now that `std::cout` is a type of `std::ostream`. Therefore, by overloading
 this operator we can say `std::cout << vec`.
 
