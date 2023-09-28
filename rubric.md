@@ -16,7 +16,7 @@ This portion of the Problem Set will be graded out of 10 points.
             Molecular Graph
                 <ul>
                     <li> Graph creation
-                    <li> Ring Analysis - NetworkX and Depth-first search
+                    <li> Ring Analysis with NetworkX
                     <li> Visualization
                 </ul>
         </td>
@@ -24,7 +24,7 @@ This portion of the Problem Set will be graded out of 10 points.
             Points
                 <ul>
                     <li> 2 points
-                    <li> 3 points
+                    <li> 1 points
                     <li> 1 point
                 </ul>
         </td>
@@ -42,7 +42,7 @@ This portion of the Problem Set will be graded out of 10 points.
         Documentation and Questions
     </td>
     <td>
-        2 points
+        4 points
     </td>
 
 

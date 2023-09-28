@@ -44,7 +44,8 @@ You can then use graph functions to determine things about the molecular structu
 Your code should create a graph using the information from the sdf file. 
 You should then print out the number of rings in the molecule and the number of atoms in each ring. You should also use NetworkX to create a visualization of the network and save it to a file.
 
-You will also implement your own code for counting the number of rings in a molecular graph using a depth-first search traversal. 
+As an extra credit option, you will also implement your own code for counting the number of rings in a molecular graph using a depth-first search traversal. 
+This extra credit is worth **10 points** on your Lecture Exercises (if you missed a week, this is a good way to make up points).
 
 You might find it useful to work in a Jupyter notebook for this homework, but **your final code should be turned in as a .py file**.
 
@@ -52,8 +53,8 @@ Your code should include:
 
 1. A function to create a NetworkX graph from the output of `parse_sdf`. Each atom should be a node and each bond should be an edge.
 2. Calculation of the number of rings in a molecule using a NetworkX function.
-3. Implementation of a ring finding algorithm (depth-first search) to find the number of rings in a molecule using your NetworkX graph. Note that the depth-first search approach will only work for simple molecules. You can see pseudocode for [a depth-first ring finding algorithm on Wikipedia](https://en.wikipedia.org/wiki/Cycle_(graph_theory)#Algorithm). Use this as a guide to complete your task.
-4. A comparison of the numer of rings calculated with your NetworkX function and the number of rings calculated using your algorithm.
+3. Calculate the number of rings (cycles) in the molecule and the number of atoms in each ring using NeworkX and a depth-first graph traversal. You will have to consult the NetworkX documentation to find an appropriate method. Have your script print the molecule name and number of rings. For each ring, print the number of atoms (nodes) in the ring.
+4. **Extra Credit (10 Lecture Exercise points)** - Implementation of a ring finding algorithm (depth-first search) to find the number of rings in a molecule using your NetworkX graph. Note that the depth-first search approach will only work for simple molecules. You can see pseudocode for [a depth-first ring finding algorithm on Wikipedia](https://en.wikipedia.org/wiki/Cycle_(graph_theory)#Algorithm). Use this as a guide to complete your task. Clearly label your extra credit task in a file called `extra_credit.py`.
 
 ### Questions
 Answer these questions in your `README.md`. 
