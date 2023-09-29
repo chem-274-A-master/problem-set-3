@@ -1,6 +1,8 @@
 <!-- omit in toc -->
 Problem Set 3
 ==================
+**Note** Your commit history on this assignment must show *incremental development* across at least two days.
+One single commit with all of your code is not acceptable.
 
 <!-- omit in toc -->
 Contents
@@ -52,8 +54,8 @@ You might find it useful to work in a Jupyter notebook for this homework, but **
 Your code should include:
 
 1. A function to create a NetworkX graph from the output of `parse_sdf`. Each atom should be a node and each bond should be an edge.
-2. Calculation of the number of rings in a molecule using a NetworkX function.
-3. Calculate the number of rings (cycles) in the molecule and the number of atoms in each ring using NeworkX and a depth-first graph traversal. You will have to consult the NetworkX documentation to find an appropriate method. Have your script print the molecule name and number of rings. For each ring, print the number of atoms (nodes) in the ring.
+2. Calculate the number of rings (cycles) in the molecule and the number of atoms in each ring using NeworkX and a depth-first graph traversal. You will have to consult the NetworkX documentation to find an appropriate method. Have your script print the molecule name and number of rings. For each ring, print the number of atoms (nodes) in the ring.
+3. Create a visualization of your molecule with `nx.draw_network`. Label the nodes in the visualization with the atom elements. You should also color the nodes by element using [CPK coloring](https://en.wikipedia.org/wiki/CPK_coloring).
 4. **Extra Credit (10 Lecture Exercise points)** - Implementation of a ring finding algorithm (depth-first search) to find the number of rings in a molecule using your NetworkX graph. Note that the depth-first search approach will only work for simple molecules. You can see pseudocode for [a depth-first ring finding algorithm on Wikipedia](https://en.wikipedia.org/wiki/Cycle_(graph_theory)#Algorithm). Use this as a guide to complete your task. Clearly label your extra credit task in a file called `extra_credit.py`.
 
 ### Questions
