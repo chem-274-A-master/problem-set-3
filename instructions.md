@@ -26,6 +26,7 @@ Contents
   - [Files](#files)
 - [C++ - Generic printing function](#c---generic-printing-function)
   - [Overloading the stream insertion operator](#overloading-the-stream-insertion-operator)
+- [C++ - More molecule functionality](#more-molecule-functionality)
 
 Python - Molecules as Graphs
 ----------------------------
@@ -124,3 +125,51 @@ can be templated!
 
 
 
+## More molecule functionality
+
+Once again, `molecule.cpp` includes a molecule class. This is largely the class from the previous
+problem set, however some of the functions have been given to you.
+
+One main difference is that the `Atom` structure now includes the atomic symbol (as a string) rather
+than the atomic number.
+
+You need to add some functionality:
+
+* Accessing the individual `Atom`s via the subscript operator `[]` (for example, `mol[2]` rather than `mol.get_atom(2)`).
+* Ability to print the molecule using the stream insertion operator (like in the previous part of this problem set)
+* A function to compute the molecular weight
+* A function to compute the nuclear repulsion energy (see below)
+
+The only information you have for the atoms is the symbol, therefore the latter two functions will require two lookup tables - one for the
+nuclear charge (usually denoted as $Z$, hydrogen = 1, carbon = 6, etc) and the atomic masses.
+
+For reference, here are the atomic masses of 4 of the more common elements:
+
+
+| Element | Mass           |
+|---------|----------------|
+| H       | 1.007825032    |
+| C       | 12.011         |
+| N       | 14.007         |
+| O       | 15.99491462    |
+
+
+### Nuclear Repulsion Energy
+
+One component of the total molecular energy is the "nuclear repulsion energy". All nuclei are positively charged, so when nuclei are
+within close range of each other (like in a molecule), they will repel each other. This repulsion can be calculated via
+
+$$
+E_{nuc} = \sum_{A}\sum_{B>A} \frac{Z_A Z_B}{r_{AB}}
+$$
+
+Where $Z_A$,$Z_B$ is the nuclear charge of atoms $A$ and $B$, respectively, and $r_{AB}$ is the distance between the to atoms.
+In atomic units, the nuclear charge is the same as the atomic number (number of protons) - that is, a proton has a charge of 1 hartree.
+**Note** - You must compute this only over distinct pairs of different atoms - do not double count pairs (for example, with pair (1,2) and then later (2,1)).
+
+**Hint** - The nuclear repulsion energy for the water molecule in the `main` function is approximately 6.68 Hartrees. The energy is positive because it is repulsive.
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
