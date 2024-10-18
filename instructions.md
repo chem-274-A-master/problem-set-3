@@ -1,8 +1,22 @@
 <!-- omit in toc -->
 Problem Set 3
 ==================
-**Note** Your commit history on this assignment must show *incremental development* across at least two days.
-One single commit with all of your code is not acceptable.
+
+<div style="background-color: #fff3cd; color: #856404; padding: 15px; margin-bottom: 25px; border: 1px solid #ffeeba; border-radius: 4px;">
+  
+  <strong>Showing your work</strong> 
+  <p>
+    Your homework assignments should show incremental development with at least two different commits over two different days of work. Assignments that do not show incremental development will incur a 5% penalty.
+  </p>
+
+  <strong>AI Acceptable Use</strong>
+  <p>
+"AI" refers to Artificial Intelligence and includes tools like ChatGPT, Claude, GitHub Copilot, and other language models or AI-powered assistants. AI tools may be used to research ideas or clarify concepts. However, they should not be used to generate code or complete assignments. All submitted work must reflect your own understanding and effort.
+</p>
+<p>
+If you use AI in this assignment, include a statement in your README reflection on what AI you used and how you used it.
+
+</div>
 
 <!-- omit in toc -->
 Contents
@@ -40,40 +54,40 @@ However, if you were working on a real molecular application, you would likely u
 
 Your task for this homework is to use Python to represent molecular information read from a [Structured data File (sdf)](https://chem.libretexts.org/Courses/Intercollegiate_Courses/Cheminformatics/02%3A_Representing_Small_Molecules_on_Computers/2.05%3A_Structural_Data_Files) as a graph. You have been provided with a function called `parse_sdf` in `read.py` which will return a list of elements and bonds from an sdf file.
 
-You will use a Python library called [NetworkX](https://networkx.org/) to create a graph from molecular information read from an SDF file.
+You will use a Python library called [NetworkX](https://networkx.org/) to create a graph from molecular information read from an SDF.
 You can then use graph functions to determine things about the molecular structure, such as the presence of rings.
 
-Your code should create a graph using the information from the sdf file. 
+Your code should create a graph using the information from the sdf. 
 You should then print out the number of rings in the molecule and the number of atoms in each ring. You should also use NetworkX to create a visualization of the network and save it to a file.
-
-As an extra credit option, you will also implement your own code for counting the number of rings in a molecular graph using a depth-first search traversal. 
-This extra credit is worth **10 points** on your Lecture Exercises (if you missed a week, this is a good way to make up points).
-
-You might find it useful to work in a Jupyter notebook for this homework, but **your final code should be turned in as a .py file**.
 
 Your code should include:
 
-1. A function to create a NetworkX graph from the output of `parse_sdf`. Each atom should be a node and each bond should be an edge.
-2. Calculate the number of rings (cycles) in the molecule and the number of atoms in each ring using NeworkX and a depth-first graph traversal. You will have to consult the NetworkX documentation to find an appropriate method. Have your script print the molecule name and number of rings. For each ring, print the number of atoms (nodes) in the ring.
-3. Create a visualization of your molecule with `nx.draw_network`. Label the nodes in the visualization with the atom elements. You should also color the nodes by element using [CPK coloring](https://en.wikipedia.org/wiki/CPK_coloring).
-4. **Extra Credit (10 Lecture Exercise points)** - Implementation of a ring finding algorithm (depth-first search) to find the number of rings in a molecule using your NetworkX graph. Note that the depth-first search approach will only work for simple molecules. You can see pseudocode for [a depth-first ring finding algorithm on Wikipedia](https://en.wikipedia.org/wiki/Cycle_(graph_theory)#Algorithm). Use this as a guide to complete your task. Clearly label your extra credit task in a file called `extra_credit.py`.
+1. A function called `create_graph` to create a NetworkX graph from the output of `parse_sdf`. Each atom should be a node and each bond should be an edge. The function signature should be
+```
+def create_graph(nodes: list[tuple], edges: list[tuple]) -> nx.Graph:
+```
+2. A function called `count_rings` that takes in the graph you created in (1). Your function should calculate the number of rings (cycles) in the molecule and the number of atoms in each ring using NeworkX. You will have to consult the NetworkX documentation to find an appropriate method. You should return your results as a tuple with the first element being the number of rings and the second element being a list of the number of atoms in each ring. The function signature should be
+```
+def count_rings(graph: nx.Graph) -> tuple[int, list[int]]:
+```
+3. A function called `visualize_molecule` that takes in an graph created by (1) and **saves** an image. Create a visualization of your molecule with `nx.draw_network`. Label the nodes in the visualization with the atom elements. You should also color the nodes by element using [CPK coloring](https://en.wikipedia.org/wiki/CPK_coloring).
 
 ### Questions
 Answer these questions in your `README.md`. 
 
 1. What is an important feature of a NetworkX node? What data type did you choose to represent a node, and why? If you did not include information about the atom identity in your node, what type of Python data type could you have used to do that?
-2. What is a depth-first search algorithm? Explain how the algorithm works (you may choose to use a combination of illustration and text). The depth-first search uses recursion - what is recursion and why is it used for this algorithm?
-3. Use PubChem to get an SDF file for a molecule of choice and use your code to analyze it. What molecule did you choose and why?
+2. For this assignment, you were instructed to complete it by writing functions. How might your code have been different if you chose to use object oriented programming instead? How might you have used inheritance to create your molecule graph object?
+2. Use PubChem to get an SDF file for a molecule of choice and use your code to analyze it. What molecule did you choose and why?
 
 ### Files
 Include the following files in your repo:
-1. Your code which can create a NetworkX network from information in an SDF file.
+1. Your code which can create a NetworkX network from information in an SDF file. Remember that this should be in a file named `molecule_graph.py`.
 2. A `README.md` which explains the repo purpose and how to run the code in your project.
 3. A `Makefile` with the following targets:
-   1. `environment` - creates the Python environment needed to run your code. Note that you will need to create an install libraries you need like NetworkX.
-   2. `analyze` - analyze your molecule of choice.
-   3. `clean` - remove images from `analyze`
-   4. `lint` - run black and flake8
+   1. `environment` - creates the Python environment needed to run your code. Note that you will need to create an install libraries you need like NetworkX. Name your environment `problem_set_3` EXACTLY. Match this case exactly or the autograder will not be able to find your environment.
+   2. `visualize` - create a visualization of the molecule you chose for (3) and save a png image.
+   3. `analyze` - run your code on the molecule you chose for (3) and print out the number of rings and the number of atoms in each ring.
+   4. `clean` - remove images from `visualize` or any files created by `analyze`.
 
 If you're interested in learning more about molecular representations, you might consider checking out the following review: ["Molecular representations in AI‑driven drug
 discovery: a review and practical guide"](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-020-00460-5)
