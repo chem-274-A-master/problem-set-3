@@ -9,13 +9,10 @@ Problem Set 3
     Your homework assignments should show incremental development with at least two different commits over two different days of work. Assignments that do not show incremental development will incur a 5% penalty.
   </p>
 
-  <strong>AI Acceptable Use</strong>
+  <strong>Reminder: No AI Tools</strong>
   <p>
-"AI" refers to Artificial Intelligence and includes tools like ChatGPT, Claude, GitHub Copilot, and other language models or AI-powered assistants. AI tools may be used to research ideas or clarify concepts. However, they should not be used to generate code or complete assignments. All submitted work must reflect your own understanding and effort.
-</p>
-<p>
-If you use AI in this assignment, include a statement in your README reflection on what AI you used and how you used it.
-
+According to MSSE Department policy, use of AI tools is not permitted in Chem 274A. Do not use generative AI tools (e.g., ChatGPT, Claude, GitHub Copilot, or similar) for any part of this assignment, including planning, coding, or writing.
+  </p>
 </div>
 
 <!-- omit in toc -->
@@ -73,12 +70,41 @@ def count_rings(graph: nx.Graph) -> tuple[int, list[int]]:
 ```
 3. A function called `visualize_molecule` that takes in an graph created by (1) and **saves** an image. Create a visualization of your molecule with `nx.draw_network`. Label the nodes in the visualization with the atom elements. You should also color the nodes by element using [CPK coloring](https://en.wikipedia.org/wiki/CPK_coloring).
 
+### Starting Code
+For this homework, you have been provided with:
+
+1. `read.py` - Contains a `parse_sdf` function that reads a Structured Data File and returns molecular information as two lists: (1) A list of tuples representing atoms: `[(atom_id, element), ...]` (2) A list of tuples representing bonds (edges): `[(atom1_id, atom2_id), ...]`
+---
+
+## Reflection Questions
+
+<div style="background-color: #e7f3fe; color: #0c5460; padding: 15px; margin-bottom: 25px; border: 1px solid #b8daff; border-radius: 4px;">
+
+  <strong>Answering Reflection Questions</strong>
+  <p>
+    Your written answers should be <em>complete explanations</em>, not short phrases. A complete answer:
+  </p>
+  <ul>
+    <li>References specific Python concepts, data types, or library features relevant to the question.</li>
+    <li>Explains the reasoning and constraints, not just what you did (say <em>why</em> a particular approach works or doesn't work).</li>
+    <li>Uses correct terminology from Python programming and graph theory where appropriate.</li>
+    <li>Is written in full sentences and paragraphs.</li>
+  </ul>
+  <p>
+    <strong>Grading:</strong> Full credit requires answers that demonstrate understanding of underlying concepts and explain <em>why</em>. Answers that only describe what you did without explanation will receive partial credit.
+  </p>
+</div>
+
+---
+
 ### Questions
 Answer these questions in your `README.md`. 
 
-1. What is an important feature of a NetworkX node? What data type did you choose to represent a node, and why? If you did not include information about the atom identity in your node, what type of Python data type could you have used to do that?
-2. For this assignment, you were instructed to complete it by writing functions. How might your code have been different if you chose to use object oriented programming instead? How might you have used inheritance to create your molecule graph object?
-2. Use PubChem to get an SDF file for a molecule of choice and use your code to analyze it. What molecule did you choose and why?
+1. NetworkX nodes must be **hashable**. What does this mean, and what constraint does it place on what data types you can use for nodes? What data type did you choose to represent your nodes, and why? 
+
+2. For this assignment, you were instructed to write functions rather than use object-oriented programming. Do you think functions or classes are more appropriate for this task? Justify your answer by considering: what state needs to be managed, what operations need to be performed, and whether the NetworkX Graph object already provides what you need.
+
+3. Use [PubChem](https://pubchem.ncbi.nlm.nih.gov/) to get an SDF file for a molecule of choice and use your code to analyze it. What molecule did you choose and why? Report the number of rings and atoms in each ring that your code found.
 
 ### Files
 Include the following files in your repo:
