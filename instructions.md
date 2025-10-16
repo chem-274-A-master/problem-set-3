@@ -120,7 +120,7 @@ If you're interested in learning more about molecular representations, you might
 discovery: a review and practical guide"](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-020-00460-5)
 
 C++ - Generic printing function
--------------------------
+-------------------------------
 
 Write a (templated) function that takes in an std::vector containing any type, and
 then loops over it and prints all the contents, with each element of the vector
@@ -161,8 +161,9 @@ than the atomic number.
 
 You need to add some functionality:
 
-* Accessing the individual `Atom`s via the subscript operator `[]` (for example, `mol[2]` rather than `mol.get_atom(2)`).
-* Ability to print the molecule using the stream insertion operator (like in the previous part of this problem set)
+* Accessing the individual `Atom`s via the subscript operator `[]` (for example, `mol[2]` rather than `mol.get_atom(2)`). The returned `Atom` should be modifiable. You must include the const version of this function as well.
+* Ability to print the molecule using the stream insertion operator. You should use the function
+  written in the previous part of this problem set.
 * A function to compute the molecular weight
 * A function to compute the nuclear repulsion energy (see below)
 
@@ -190,12 +191,30 @@ E_{nuc} = \sum_{A}\sum_{B>A} \frac{Z_A Z_B}{r_{AB}}
 $$
 
 Where $Z_A$,$Z_B$ is the nuclear charge of atoms $A$ and $B$, respectively, and $r_{AB}$ is the distance between the to atoms.
-In atomic units, the nuclear charge is the same as the atomic number (number of protons) - that is, a proton has a charge of 1 hartree.
+In atomic units, the nuclear charge is the same as the atomic number (number of protons) - that is, a proton has a charge of 1.
+
 **Note** - You must compute this only over distinct pairs of different atoms - do not double count pairs (for example, with pair (1,2) and then later (2,1)).
 
-**Hint** - The nuclear repulsion energy for the water molecule in the `main` function is approximately 6.68 Hartrees. The energy is positive because it is repulsive.
+**Hint** - The nuclear repulsion energy for the water molecule in the `main` function is approximately +6.68 Hartrees. The energy is positive because it is repulsive.
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
 </script>
+
+
+### Questions
+
+1. When overloading the stream insertion operator
+
+    1. Why do we return the stream object that was passed in as an argument?
+
+    1. The `std::ostream` object is a base class for `std::cout` as well as other streams. Why are we using that rather
+       than a specific type?
+
+1. Why do we need both a `const` and a non-`const` version of the subscript operator? When is one called over the other?
+
+    1. For the `const` version, what is the type of object you returned (reference or copy)? What would be the advantage to returning
+       one or the other?
+
+1. What data type did you use for the lookup tables for atomic data? Why did you choose that?

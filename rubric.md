@@ -50,7 +50,7 @@ This portion of the Problem Set will be graded out of 10 points.
 
 # Problem Set 3 C++ Rubric
 
-This portion of the Problem Set will be graded out of 20 points.
+This portion of the Problem Set will be graded out of 10 points.
 
 <table width="100%">
     <tr>
@@ -66,16 +66,14 @@ This portion of the Problem Set will be graded out of 20 points.
             Printing Function
                 <ul>
                     <li> Function prints out a vector
-                    <li> Each element is on its own line
                     <li> Function is properly templated
                 </ul>
         </td>
         <td>
             Points
                 <ul>
-                    <li> 1 points
-                    <li> 1 point
-                    <li> 2 points
+                    <li> 0.5 points
+                    <li> 0.5 points
                 </ul>
         </td>
     </tr>
@@ -84,7 +82,6 @@ This portion of the Problem Set will be graded out of 20 points.
             Molecule Functionality
                 <ul>
                     <li> Accessing atoms via subscript operator
-                    <li> Proper lookup tables
                     <li> Printing via overloaded `<<` operator
                     <li> Molecular weight function
                     <li> Nuclear repulsion function
@@ -93,12 +90,19 @@ This portion of the Problem Set will be graded out of 20 points.
         <td>
             Points
                 <ul>
-                    <li> 2 points
-                    <li> 2 points
-                    <li> 2 points
-                    <li> 4 point
-                    <li> 6 points
+                    <li> 1 point
+                    <li> 1 point
+                    <li> 2 point
+                    <li> 3 points
                 </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Reflection Questions
+        </td>
+        <td>
+            2 points
         </td>
     </tr>
 
