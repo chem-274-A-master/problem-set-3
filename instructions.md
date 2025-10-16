@@ -135,7 +135,7 @@ stream object, and the second argument being what is going to be inserted. In
 this case, the first argument is a generic `std::ostream` (output stream)
 object, and the second is what you want to print.
 
-We will cover streams in a little more detail in Week 5. However, we will just
+We will cover streams in a little more detail in Week 9. However, we will just
 say now that `std::cout` is a type of `std::ostream`. Therefore, by overloading
 this operator we can say `std::cout << vec`.
 
@@ -205,9 +205,11 @@ In atomic units, the nuclear charge is the same as the atomic number (number of 
 
 ### Questions
 
+Place answers to these questions in the README file that you used in the Python section above.
+
 1. When overloading the stream insertion operator
 
-    1. Why do we return the stream object that was passed in as an argument?
+    1. Why do take in the stream object as a non-`const` reference?
 
     1. The `std::ostream` object is a base class for `std::cout` as well as other streams. Why are we using that rather
        than a specific type?
@@ -217,4 +219,4 @@ In atomic units, the nuclear charge is the same as the atomic number (number of 
     1. For the `const` version, what is the type of object you returned (reference or copy)? What would be the advantage to returning
        one or the other?
 
-1. What data type did you use for the lookup tables for atomic data? Why did you choose that?
+1. What data type(s) did you use for the lookup tables for atomic data? Why did you choose that?
