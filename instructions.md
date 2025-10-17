@@ -15,16 +15,6 @@ According to MSSE Department policy, use of AI tools is not permitted in Chem 27
   </p>
 </div>
 
-<!-- omit in toc -->
-Contents
---------
-- [Python - Molecules as Graphs](#python---molecules-as-graphs)
-  - [Questions](#questions)
-  - [Files](#files)
-- [C++ - Generic printing function](#c---generic-printing-function)
-  - [Overloading the stream insertion operator](#overloading-the-stream-insertion-operator)
-- [C++ - More molecule functionality](#more-molecule-functionality)
-
 Python - Molecules as Graphs
 ----------------------------
 So far in this course, we've talked about running molecular mechanics and quantum chemistry simulations of molecules.
@@ -41,7 +31,7 @@ A mathematical graph is made up of "nodes" or "vertices" (circles in the image b
 <center>
 <img src="./images/graph_wiki.png">
 
-**Figure 1** - A depiction of a graph with six nodes and seven edges. [source](https://en.wikipedia.org/wiki/Graph_theory)
+<strong>Figure 1</strong> - A depiction of a graph with six nodes and seven edges. [source](https://en.wikipedia.org/wiki/Graph_theory)
 </center>
 
 When molecules are represented as graphs, the atoms are represented as nodes in the graph, and the bonds are represented as edges.
@@ -74,6 +64,7 @@ def count_rings(graph: nx.Graph) -> tuple[int, list[int]]:
 For this homework, you have been provided with:
 
 1. `read.py` - Contains a `parse_sdf` function that reads a Structured Data File and returns molecular information as two lists: (1) A list of tuples representing atoms: `[(atom_id, element), ...]` (2) A list of tuples representing bonds (edges): `[(atom1_id, atom2_id), ...]`
+
 ---
 
 ## Reflection Questions
