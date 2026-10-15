@@ -153,8 +153,7 @@ than the atomic number.
 You need to add some functionality:
 
 * Accessing the individual `Atom`s via the subscript operator `[]` (for example, `mol[2]` rather than `mol.get_atom(2)`). The returned `Atom` should be modifiable. You must include the const version of this function as well.
-* Ability to print the molecule using the stream insertion operator. You should use the function
-  written in the previous part of this problem set.
+* Ability to print the molecule using the stream insertion operator.
 * A function to compute the molecular weight
 * A function to compute the nuclear repulsion energy (see below)
 
