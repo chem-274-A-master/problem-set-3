@@ -1,24 +1,39 @@
 <!-- omit in toc -->
-Problem Set 3
-==================
+# Problem Set 3
 
-<div style="background-color: #fff3cd; color: #856404; padding: 15px; margin-bottom: 25px; border: 1px solid #ffeeba; border-radius: 4px;">
-  
-  <strong>Showing your work</strong> 
-  <p>
-    Your homework assignments should show incremental development with at least two different commits over two different days of work. Assignments that do not show incremental development will incur a 5% penalty.
-  </p>
+<div class="callout callout-warning">
 
-  <strong>Reminder: No AI Tools</strong>
-  <p>
+<strong>Showing your work</strong>
+
+Your homework assignments should show incremental development with at least two different commits over two different days of work. Assignments that do not show incremental development will incur a 5% penalty.
+
+<strong>Reminder: No AI Tools</strong>
+
 According to MSSE Department policy, use of AI tools is not permitted in Chem 274A. Do not use generative AI tools (e.g., ChatGPT, Claude, GitHub Copilot, or similar) for any part of this assignment, including planning, coding, or writing.
-  </p>
+
 </div>
 
-Python - Molecules as Graphs
-----------------------------
+<!-- omit in toc -->
+## Contents
+
+- [Section 1 - Python: Molecules as Graphs](#section-1---python-molecules-as-graphs)
+  - [Background](#background)
+  - [Specifications](#specifications)
+  - [Starting Code](#starting-code)
+  - [Reflection Questions](#reflection-questions)
+  - [Required Files](#required-files)
+- [Section 2 - C++: Templates and Operator Overloading](#section-2---c-templates-and-operator-overloading)
+  - [Overloading the Stream Insertion Operator](#overloading-the-stream-insertion-operator)
+  - [More Molecule Functionality](#more-molecule-functionality)
+  - [Nuclear Repulsion Energy](#nuclear-repulsion-energy)
+  - [Questions](#questions-1)
+
+## Section 1 - Python: Molecules as Graphs
+
+### Background
+
 So far in this course, we've talked about running molecular mechanics and quantum chemistry simulations of molecules.
-But, how do you store information about molecules in databases?
+But how do you store information about molecules in databases?
 Or, if you have a set of molecules, how do you determine which molecules are similar to one another?
 When you have a large amount of data, visual inspection to determine similarity or equivalence is impractical. 
 It also requires high skill and may be prone to errors.
@@ -29,15 +44,15 @@ Many of the representations for small molecules that are used in cheminformatics
 A mathematical graph is made up of "nodes" or "vertices" (circles in the image below) and "edges" which connect nodes (line between circles in the image below).
 
 <center>
-<img src="./images/graph_wiki.png">
+<img src="images/graph_wiki.png" alt="A graph with six nodes and seven edges.">
 
-<strong>Figure 1</strong> - A depiction of a graph with six nodes and seven edges. [source](https://en.wikipedia.org/wiki/Graph_theory)
+**Figure 1**: A depiction of a graph with six nodes and seven edges. [Source](https://en.wikipedia.org/wiki/Graph_theory)
 </center>
 
 When molecules are represented as graphs, the atoms are represented as nodes in the graph, and the bonds are represented as edges.
 
 In this homework, you will use a Python library called [NetworkX](https://networkx.org/) for graph representation.
-You will also implement your own ring finding algorithm.
+You will also use NetworkX to find rings in molecular graphs.
 However, if you were working on a real molecular application, you would likely use a specialized library like [RDKit](https://www.rdkit.org/) instead (we will use this library in a later lab!).
 
 Your task for this homework is to use Python to represent molecular information read from a [Structured data File (sdf)](https://chem.libretexts.org/Courses/Intercollegiate_Courses/Cheminformatics/02%3A_Representing_Small_Molecules_on_Computers/2.05%3A_Structural_Data_Files) as a graph. You have been provided with a function called `parse_sdf` in `read.py` which will return a list of elements and bonds from an sdf file.
@@ -48,45 +63,54 @@ You can then use graph functions to determine things about the molecular structu
 Your code should create a graph using the information from the sdf. 
 You should then print out the number of rings in the molecule and the number of atoms in each ring. You should also use NetworkX to create a visualization of the network and save it to a file.
 
+### Specifications
+
 Your code should include:
 
 1. A function called `create_graph` to create a NetworkX graph from the output of `parse_sdf`. Each atom should be a node and each bond should be an edge. The function signature should be
+
+```python
+def create_graph(
+    elements: list[str], bonds: list[tuple[int, int, int]]
+) -> nx.Graph:
 ```
-def create_graph(nodes: list[tuple], edges: list[tuple]) -> nx.Graph:
-```
+
 2. A function called `count_rings` that takes in the graph you created in (1). Your function should calculate the number of rings (cycles) in the molecule and the number of atoms in each ring using NeworkX. You will have to consult the NetworkX documentation to find an appropriate method. You should return your results as a tuple with the first element being the number of rings and the second element being a list of the number of atoms in each ring. The function signature should be
-```
+
+```python
 def count_rings(graph: nx.Graph) -> tuple[int, list[int]]:
 ```
-3. A function called `visualize_molecule` that takes in an graph created by (1) and **saves** an image. Create a visualization of your molecule with `nx.draw_network`. Label the nodes in the visualization with the atom elements. You should also color the nodes by element using [CPK coloring](https://en.wikipedia.org/wiki/CPK_coloring).
+
+3. A function called `visualize_molecule` that takes in a graph created by (1) and **saves** an image. The function signature should be
+
+```python
+def visualize_molecule(graph: nx.Graph, filename: str) -> None:
+```
+
+Create a visualization of your molecule with `nx.draw_networkx`. Label the nodes in the visualization with the atom elements. You should also color the nodes by element using [CPK coloring](https://en.wikipedia.org/wiki/CPK_coloring).
 
 ### Starting Code
+
 For this homework, you have been provided with:
 
-1. `read.py` - Contains a `parse_sdf` function that reads a Structured Data File and returns molecular information as two lists: (1) A list of tuples representing atoms: `[(atom_id, element), ...]` (2) A list of tuples representing bonds (edges): `[(atom1_id, atom2_id), ...]`
+1. `read.py` - Contains a `parse_sdf` function that reads a Structured Data File and returns molecular information as two lists: (1) a list of element symbols, where each position is the atom's zero-based index, and (2) a list of tuples representing bonds in the form `(atom1_index, atom2_index, bond_order)`.
 
----
+### Reflection Questions
 
-## Reflection Questions
+<div class="callout callout-note">
 
-<div style="background-color: #e7f3fe; color: #0c5460; padding: 15px; margin-bottom: 25px; border: 1px solid #b8daff; border-radius: 4px;">
+<strong>Answering Reflection Questions</strong>
 
-  <strong>Answering Reflection Questions</strong>
-  <p>
-    Your written answers should be <em>complete explanations</em>, not short phrases. A complete answer:
-  </p>
-  <ul>
-    <li>References specific Python concepts, data types, or library features relevant to the question.</li>
-    <li>Explains the reasoning and constraints, not just what you did (say <em>why</em> a particular approach works or doesn't work).</li>
-    <li>Uses correct terminology from Python programming and graph theory where appropriate.</li>
-    <li>Is written in full sentences and paragraphs.</li>
-  </ul>
-  <p>
-    <strong>Grading:</strong> Full credit requires answers that demonstrate understanding of underlying concepts and explain <em>why</em>. Answers that only describe what you did without explanation will receive partial credit.
-  </p>
+Your written answers should be *complete explanations*, not short phrases. A complete answer:
+
+- References specific Python concepts, data types, or library features relevant to the question.
+- Explains the reasoning and constraints, not just what you did (say *why* a particular approach works or doesn't work).
+- Uses correct terminology from Python programming and graph theory where appropriate.
+- Is written in full sentences and paragraphs.
+
+**Grading:** Full credit requires answers that demonstrate understanding of underlying concepts and explain *why*. Answers that only describe what you did without explanation will receive partial credit.
+
 </div>
-
----
 
 ### Questions
 Answer these questions in your `README.md`. 
@@ -97,7 +121,8 @@ Answer these questions in your `README.md`.
 
 3. Use [PubChem](https://pubchem.ncbi.nlm.nih.gov/) to get an SDF file for a molecule of choice and use your code to analyze it. What molecule did you choose and why? Report the number of rings and atoms in each ring that your code found.
 
-### Files
+### Required Files
+
 Include the following files in your repo:
 1. Your code which can create a NetworkX network from information in an SDF file. Remember that this should be in a file named `molecule_graph.py`.
 2. A `README.md` which explains the repo purpose and how to run the code in your project.
@@ -110,15 +135,14 @@ Include the following files in your repo:
 If you're interested in learning more about molecular representations, you might consider checking out the following review: ["Molecular representations in AI‑driven drug
 discovery: a review and practical guide"](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-020-00460-5)
 
-C++ - Generic printing function
--------------------------------
+## Section 2 - C++: Templates and Operator Overloading
 
 Write a (templated) function that takes in an std::vector containing any type, and
 then loops over it and prints all the contents, with each element of the vector
 on its own line.
 
 
-### Overloading the stream insertion operator
+### Overloading the Stream Insertion Operator
 
 In C++, you can overload the stream insertion operator (`<<`). You can do
 this by writing a function that takes in two arguments, one being the output
@@ -134,15 +158,14 @@ The function should return the `std::ostream` object that was passed in. This
 is what allows chaining calls to the operator `<<`. Of course, this function
 can be templated!
 
+```cpp
+std::ostream & operator<<(std::ostream & os, ...)
+{
+    return os;
+}
+```
 
-    std::ostream & operator<<(std::ostream & os, ...)
-    {
-        return os;
-    }
-
-
-
-## More molecule functionality
+### More Molecule Functionality
 
 Once again, `molecule.cpp` includes a molecule class. This is largely the class from the previous
 problem set, however some of the functions have been given to you.
